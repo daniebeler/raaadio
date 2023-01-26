@@ -1,0 +1,7 @@
+{
+  "name": "raaadio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
