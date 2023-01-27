@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>genre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>{{genre}}</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let station of stations">
+      <ion-col size="auto">
+        <img [src]="station.favicon" alt="">
+      </ion-col>
+      <ion-col>
+        <h1>{{station.name}}</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

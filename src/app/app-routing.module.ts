@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'genres',
     loadChildren: () => import('./pages/genres/genres.module').then( m => m.GenresPageModule)
   },
+  {
+    path: 'genres/:id',
+    loadChildren: () => import('./pages/genre/genre.module').then( m => m.GenrePageModule)
+  },
 ];
 
 @NgModule({

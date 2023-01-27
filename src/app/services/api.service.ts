@@ -14,4 +14,8 @@ export class ApiService {
   getRequests(): Observable<any> {
     return this.httpClient.get<any>('https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/AT?limit=20&order=votes&reverse=true');
   }
+
+  getStationsOfGenre(genre: string): Observable<any> {
+    return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/stations/bytagexact/${genre}?limit=20&order=votes&reverse=true`);
+  }
 }
