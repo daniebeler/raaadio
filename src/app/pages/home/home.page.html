@@ -14,21 +14,15 @@
   </ion-header>
 
   <div id="container">
-    <h2>Top german stations</h2>
-    <div class="scrolling-wrapper-flexbox">
-      <div *ngFor="let station of topGermanStations" class="card">
-        <img [src]="station.favicon" alt="">
-        <p>{{station.name}}</p>
-      </div>
-    </div>
-
-
-    <strong>Ready to create an app?</strong>
-    <audio controls autoplay>
-      <source
-        src="http://d141.rndfnk.com/ard/dlf/01/mp3/128/stream.mp3?cid=01FBPWZ12X2XN8SDSMBZ7X0ZTT&sid=2Ku7tXSBypZcpJOKydEluXvsyjk&token=PXmnrZp1WB62fpR7NV2X8YHBNvWc8z0hgbVJzxHsAeA&tvf=quF7GAo1PhdkMTQxLnJuZGZuay5jb20"
-        type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+    <h2>Top stations in austria</h2>
+    <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
+      [keyboard]="{enabled: true}" class="my-swiper">
+      <ng-template swiperSlide class="lul" *ngFor="let station of topGermanStations; index as i">
+        <div class="swiper-slide-container">
+          <img [src]="station.favicon" alt="">
+          <p>{{station.name}}</p>
+        </div>
+      </ng-template>
+    </swiper>
   </div>
 </ion-content>
