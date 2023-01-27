@@ -14,10 +14,11 @@
 
     <ion-row *ngFor="let station of stations">
       <ion-col size="auto">
-        <img [src]="station.favicon" alt="">
+        <img class="logo-img" [src]="station.favicon" alt="">
       </ion-col>
       <ion-col>
         <h1>{{station.name}}</h1>
+        <img class="flag-img" [src]="'http://purecatamphetamine.github.io/country-flag-icons/3x2/' + station.countrycode + '.svg'" alt="">
       </ion-col>
     </ion-row>
   </ion-grid>
