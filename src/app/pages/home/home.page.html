@@ -18,8 +18,8 @@
     <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
       [keyboard]="{enabled: true}" class="my-swiper">
       <ng-template swiperSlide class="lul" *ngFor="let station of topGermanStations; index as i">
-        <div class="swiper-slide-container">
-          <img [src]="station.favicon" alt="">
+        <div class="swiper-slide-container" (click)="clickedStation(station)">
+          <img [src]="station.icon" alt="">
           <p>{{station.name}}</p>
         </div>
       </ng-template>
