@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Controls } from 'src/app/models/controls';
 import { Station } from 'src/app/models/station';
 import { AudioService } from 'src/app/services/audio.service';
 
@@ -9,7 +10,7 @@ import { AudioService } from 'src/app/services/audio.service';
 })
 export class PlayerComponent implements OnInit {
 
-  currentPlayingStation: Station | null = null
+  controls: Controls | null = null
 
   constructor(
     private audioService: AudioService
@@ -17,9 +18,16 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     this.audioService.getCurrentPlaying().subscribe(currentPlaying => {
-      console.log(currentPlaying?.url)
-      this.currentPlayingStation = currentPlaying
+      this.controls = currentPlaying
     })
+  }
+
+  pause() {
+    this.audioService.pause()
+  }
+
+  play() {
+    this.audioService.play()
   }
 
 }

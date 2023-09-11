@@ -1,16 +1,19 @@
-<ion-grid>
+<ion-grid *ngIf="controls?.station">
   <ion-row>
     <ion-col size="auto">
-      <img class="station-icon" [src]="currentPlayingStation?.icon" alt="">
+      <img class="station-icon" [src]="controls?.station?.icon" alt="" />
     </ion-col>
     <ion-col size="auto">
-      {{ currentPlayingStation?.name }}
+      {{ controls?.station?.name }}
     </ion-col>
     <ion-col>
-      <audio controls autoplay>
-        <source [src]="currentPlayingStation?.url" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <button *ngIf="controls?.playing" (click)="pause()">
+        Stop
+      </button>
+
+      <button *ngIf="!controls?.playing" (click)="play()">
+        Play
+      </button>
     </ion-col>
   </ion-row>
 </ion-grid>

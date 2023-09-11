@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
 
   clickedStation(station: any) {
     console.log(station)
-    this.audioService.updateCurrentPlaying(station)
+    this.audioService.updateStation(station)
   }
 
 }

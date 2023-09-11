@@ -1,32 +1,47 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Station } from '../models/station';
+import { Controls } from '../models/controls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AudioService {
 
-  private currentPlaying = new BehaviorSubject<Station | null>(null);
+  private currentPlaying = new BehaviorSubject<Controls | null>(null);
 
   private audio = new Audio()
 
   constructor() {
    }
 
-  getCurrentPlaying(): Observable<Station | null> {
+  getCurrentPlaying(): Observable<Controls | null> {
     return this.currentPlaying
   }
 
-  updateCurrentPlaying(newStation: Station) {
-    this.currentPlaying.next(newStation)
-    this.play(newStation.url)
+  updateStation(newStation: Station) {
+    let fief = this.currentPlaying.getValue() ?? new Controls(newStation)
+    fief.station = newStation
+    this.currentPlaying.next(fief)
+    this.audio.src = fief.station.url
+    this.play()
   }
 
-  play(url: string) {
-    this.audio.pause()
-    this.audio.src = url
-    this.audio.load()
+  play() {
     this.audio.play()
+    let soos = this.currentPlaying.getValue()
+    if (soos) {
+      soos.playing = true
+      this.currentPlaying.next(soos)
+    }
+  }
+
+  pause() {
+    this.audio.pause()
+    let soos = this.currentPlaying.getValue()
+    if (soos) {
+      soos.playing = false
+      this.currentPlaying.next(soos)
+    }
   }
 }
