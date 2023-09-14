@@ -14,13 +14,23 @@
   </ion-header>
 
   <div id="container">
-    <h2>Top stations in austria</h2>
+    <h2>Top stations in Austria</h2>
     <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
       [keyboard]="{enabled: true}" class="my-swiper">
       <ng-template swiperSlide class="lul" *ngFor="let station of topGermanStations; index as i">
-        <div class="swiper-slide-container" (click)="clickedStation(station)">
-          <img [src]="station.icon" alt="">
-          <p>{{station.name}}</p>
+        <div class="swiper-slide-container">
+          <app-station [station]="station" />
+        </div>
+      </ng-template>
+    </swiper>
+
+
+    <h2>Top stations worldwide</h2>
+    <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
+      [keyboard]="{enabled: true}" class="my-swiper">
+      <ng-template swiperSlide class="lul" *ngFor="let station of topStationsWorldwide; index as i">
+        <div class="swiper-slide-container">
+          <app-station [station]="station" />
         </div>
       </ng-template>
     </swiper>
