@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { Station } from 'src/app/models/station';
 import { ApiService } from 'src/app/services/api.service';
 import { AudioService } from 'src/app/services/audio.service';
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private audioService: AudioService
+    private audioService: AudioService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,11 +29,19 @@ export class HomePage implements OnInit {
       console.log(res);
       this.topGermanStations = res;
     })
+
+    this.apiService.getMostPopularTags().subscribe(res => {
+      console.log(res)
+    })
   }
 
   clickedStation(station: any) {
     console.log(station)
     this.audioService.updateStation(station)
+  }
+
+  gotoGenres() {
+    this.router.navigate(['/countries'])
   }
 
 }

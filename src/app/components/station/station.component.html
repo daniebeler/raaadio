@@ -1,0 +1,9 @@
+<div (click)="clickedStation(station)">
+  <img
+    [src]="station.icon"
+    alt=""
+    appImg
+    onerror="this.onerror=null; this.src='./../../../assets/images/station-fallback.svg'"
+  />
+  <p>{{ station.name }}</p>
+</div>

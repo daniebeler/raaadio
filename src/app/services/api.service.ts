@@ -20,7 +20,17 @@ export class ApiService {
     );
   }
 
+  getStationsByCountry(countryCode: string): Observable<Station[]> {
+    return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/${countryCode}?limit=30&order=votes&reverse=true`).pipe(
+      map((data: any) => data.map((item: any) => this.stationAdapter.adapt(item)))
+    );
+  }
+
   getStationsOfGenre(genre: string): Observable<any> {
     return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/stations/bytagexact/${genre}?limit=20&order=votes&reverse=true`);
+  }
+
+  getMostPopularTags(): Observable<any> {
+    return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/tags?limit=20&order=stationcount&reverse=true`);
   }
 }

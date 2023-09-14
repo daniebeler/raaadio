@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PlayerComponent } from './player/player.component';
+import { StationComponent } from './station/station.component';
 
 @NgModule({
   declarations: [
-    PlayerComponent
+    PlayerComponent,
+    StationComponent
   ],
   exports: [
-    PlayerComponent
+    PlayerComponent,
+    StationComponent
   ],
   imports: [
     IonicModule,

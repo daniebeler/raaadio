@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'genres/:id',
     loadChildren: () => import('./pages/genre/genre.module').then( m => m.GenrePageModule)
   },
+  {
+    path: 'countries',
+    loadChildren: () => import('./pages/countries/countries.module').then( m => m.CountriesPageModule)
+  },
+  {
+    path: 'countries/:code',
+    loadChildren: () => import('./pages/country/country.module').then( m => m.CountryPageModule)
+  },
 ];
 
 @NgModule({
