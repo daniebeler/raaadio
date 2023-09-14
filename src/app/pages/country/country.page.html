@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{countryName}}</ion-title>
+    <ion-title>Radio Stations in {{countryName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,8 +9,8 @@
     <ion-row>
       <ion-col>
         <ion-grid>
-          <ion-row *ngFor="let station of stations">
-            <ion-col>
+          <ion-row>
+            <ion-col size="auto" *ngFor="let station of stations">
               <app-station [station]="station"/>
             </ion-col>
           </ion-row>

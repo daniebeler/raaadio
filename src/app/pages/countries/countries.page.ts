@@ -259,6 +259,15 @@ export class CountriesPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
+    let news = [['at', 'aust'], ['aust', 'lool']]
+
+    this.countries.forEach(meh => {
+      news.push([meh.code, meh.name])
+    })
+
+    console.log(news)
   }
 
   gotoCountry(countryCode: string) {
