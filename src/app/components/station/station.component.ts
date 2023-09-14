@@ -18,7 +18,6 @@ export class StationComponent implements OnInit {
   ngOnInit() {}
 
   clickedStation(station: any) {
-    console.log(station)
     this.audioService.updateStation(station)
   }
 

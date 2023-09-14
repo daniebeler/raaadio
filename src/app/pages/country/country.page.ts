@@ -268,7 +268,6 @@ export class CountryPage implements OnInit {
     this.countryCode = code ?? 'Failed to receive genre';
     this.countryName = this.countryMap.get(this.countryCode) ?? 'not found';
     this.apiService.getStationsByCountry(this.countryCode).subscribe((res) => {
-      console.log(res);
       this.stations = res;
     });
   }

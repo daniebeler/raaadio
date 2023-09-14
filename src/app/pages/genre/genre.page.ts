@@ -21,7 +21,6 @@ export class GenrePage implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.genre = id ?? 'Failed to receive genre';
     this.apiService.getStationsOfGenre(this.genre).subscribe(res => {
-      console.log(res);
       this.stations = res;
     })
   }
