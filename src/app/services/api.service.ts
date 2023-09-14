@@ -15,7 +15,7 @@ export class ApiService {
   ) { }
 
   getRequests(): Observable<Station[]> {
-    return this.httpClient.get<any>('https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/AT?limit=20&order=votes&reverse=true').pipe(
+    return this.httpClient.get<any>('https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/AT?limit=30&order=votes&reverse=true').pipe(
       map((data: any) => data.map((item: any) => this.stationAdapter.adapt(item)))
     );
   }

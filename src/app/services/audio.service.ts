@@ -13,7 +13,14 @@ export class AudioService {
   private audio = new Audio()
 
   constructor() {
-   }
+    this.audio.addEventListener("play", fief => {
+      this.startedPlaying()
+    })
+
+    this.audio.addEventListener("pause", fief => {
+      this.startedPause()
+    })
+  }
 
   getCurrentPlaying(): Observable<Controls | null> {
     return this.currentPlaying
@@ -27,8 +34,7 @@ export class AudioService {
     this.play()
   }
 
-  play() {
-    this.audio.play()
+  startedPlaying() {
     let soos = this.currentPlaying.getValue()
     if (soos) {
       soos.playing = true
@@ -36,12 +42,19 @@ export class AudioService {
     }
   }
 
-  pause() {
-    this.audio.pause()
+  startedPause() {
     let soos = this.currentPlaying.getValue()
     if (soos) {
       soos.playing = false
       this.currentPlaying.next(soos)
     }
+  }
+
+  play() {
+    this.audio.play()
+  }
+
+  pause() {
+    this.audio.pause()
   }
 }
