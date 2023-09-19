@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   getStationsOfGenre(genre: string): Observable<Station[]> {
-    return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/stations/bytagexact/${genre}?limit=20&order=votes&reverse=true`).pipe(
+    return this.httpClient.get<any>(`https://de1.api.radio-browser.info/json/stations/bytagexact/${genre}?limit=100&order=votes&reverse=true`).pipe(
       map((data: any) => data.map((item: any) => this.stationAdapter.adapt(item)))
     );
   }

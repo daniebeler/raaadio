@@ -21,6 +21,11 @@ export class GenresPage implements OnInit {
       tag: 'country'
     },
     {
+      name: 'Rock',
+      image: 'rock.jpg',
+      tag: 'rock'
+    },
+    {
       name: 'Metal',
       image: 'metal.jpg',
       tag: 'metal'
@@ -29,6 +34,31 @@ export class GenresPage implements OnInit {
       name: 'Jazz',
       image: 'jazz.jpg',
       tag: 'jazz'
+    },
+    {
+      name: 'Hip Hop',
+      image: 'hiphop.jpg',
+      tag: 'hiphop'
+    },
+    {
+      name: 'Indie',
+      image: 'indie.jpg',
+      tag: 'indie'
+    },
+    {
+      name: 'Lo Fi',
+      image: 'lofi.jpg',
+      tag: 'lofi'
+    },
+    {
+      name: 'Classic',
+      image: 'classic.jpg',
+      tag: 'classic'
+    },
+    {
+      name: 'Reggae',
+      image: 'reggae.jpg',
+      tag: 'reggae'
     }
   ]
 
