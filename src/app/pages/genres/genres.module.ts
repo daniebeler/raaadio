@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { GenresPageRoutingModule } from './genres-routing.module';
 
 import { GenresPage } from './genres.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GenresPageRoutingModule
+    GenresPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [GenresPage]
 })

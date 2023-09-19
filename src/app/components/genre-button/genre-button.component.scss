@@ -1,0 +1,17 @@
+.huge-button {
+  border-radius: 8px;
+  aspect-ratio: 6 / 2;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.huge-button:hover {
+  cursor: pointer;
+}

@@ -13,8 +13,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col>
-        fief
+      <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="4" size-xl="3" *ngFor="let genre of genres">
+        <app-genre-button [genre]="genre" />
       </ion-col>
     </ion-row>
   </ion-grid>
