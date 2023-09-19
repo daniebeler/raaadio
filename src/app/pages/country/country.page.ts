@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -260,7 +260,8 @@ export class CountryPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -270,5 +271,9 @@ export class CountryPage implements OnInit {
     this.apiService.getStationsByCountry(this.countryCode).subscribe((res) => {
       this.stations = res;
     });
+  }
+
+  gotoGenres() {
+    this.router.navigate(['/countries'])
   }
 }

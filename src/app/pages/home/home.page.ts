@@ -36,6 +36,10 @@ export class HomePage implements OnInit {
   }
 
   gotoGenres() {
+    this.router.navigate(['/genres'])
+  }
+
+  gotoCountries() {
     this.router.navigate(['/countries'])
   }
 }

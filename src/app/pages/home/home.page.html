@@ -1,17 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
     <h2>Top stations in Austria</h2>
@@ -35,8 +30,26 @@
       </ng-template>
     </swiper>
 
-    <button (click)="gotoGenres()">
-      fief
-    </button>
+
   </div>
+
+
+  <ion-grid>
+    <ion-row>
+      <h1>Find Stations</h1>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button (click)="gotoCountries()">
+          Countries
+        </button>
+      </ion-col>
+
+      <ion-col>
+        <button (click)="gotoGenres()">
+          Genres
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

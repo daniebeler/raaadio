@@ -265,4 +265,8 @@ export class CountriesPage implements OnInit {
     this.router.navigate(["/countries/", countryCode])
   }
 
+  gotoHome() {
+    this.router.navigate(["/"])
+  }
+
 }
