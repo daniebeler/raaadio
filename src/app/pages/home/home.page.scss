@@ -26,3 +26,32 @@
 .swiper-slide {
   width: 100px !important;
 }
+
+.huge-button {
+  border-radius: 8px;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  h2 {
+    padding: 50px 30px;
+    text-align: center;
+  }
+}
+
+.countries {
+  background-image: url('../../../assets/images/worldmap.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.genres {
+  background-image: url('../../../assets/images/genres.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}

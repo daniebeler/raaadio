@@ -1,38 +1,53 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title> Home </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <div id="container">
     <h2>Top stations in Austria</h2>
-    <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
-      [keyboard]="{enabled: true}" class="my-swiper">
-      <ng-template swiperSlide class="lul" *ngFor="let station of topGermanStations; index as i">
+    <swiper
+      [slidesPerView]="'auto'"
+      [effect]="'fade'"
+      watch-slides-visibility="true"
+      [spaceBetween]="10"
+      [slidesOffsetBefore]="10"
+      [keyboard]="{enabled: true}"
+      class="my-swiper"
+    >
+      <ng-template
+        swiperSlide
+        class="lul"
+        *ngFor="let station of topGermanStations; index as i"
+      >
         <div class="swiper-slide-container">
           <app-station [station]="station" />
         </div>
       </ng-template>
     </swiper>
-
 
     <h2>Top stations worldwide</h2>
-    <swiper [slidesPerView]="'auto'" [effect]="'fade'" watch-slides-visibility="true" [spaceBetween]="10" [slidesOffsetBefore]="10"
-      [keyboard]="{enabled: true}" class="my-swiper">
-      <ng-template swiperSlide class="lul" *ngFor="let station of topStationsWorldwide; index as i">
+    <swiper
+      [slidesPerView]="'auto'"
+      [effect]="'fade'"
+      watch-slides-visibility="true"
+      [spaceBetween]="10"
+      [slidesOffsetBefore]="10"
+      [keyboard]="{enabled: true}"
+      class="my-swiper"
+    >
+      <ng-template
+        swiperSlide
+        class="lul"
+        *ngFor="let station of topStationsWorldwide; index as i"
+      >
         <div class="swiper-slide-container">
           <app-station [station]="station" />
         </div>
       </ng-template>
     </swiper>
-
-
   </div>
-
 
   <ion-grid>
     <ion-row>
@@ -40,15 +55,15 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button (click)="gotoCountries()">
-          Countries
-        </button>
+        <div class="huge-button countries" (click)="gotoCountries()">
+          <h2>Countries</h2>
+        </div>
       </ion-col>
 
       <ion-col>
-        <button (click)="gotoGenres()">
-          Genres
-        </button>
+        <div class="huge-button genres" (click)="gotoGenres()">
+          <h2>Genres</h2>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
