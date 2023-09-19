@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Station } from 'src/app/models/station';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class GenrePage implements OnInit {
 
   genre: string = '';
-  stations: any[] = [];
+  stations: Station[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,10 @@ export class GenrePage implements OnInit {
     this.apiService.getStationsOfGenre(this.genre).subscribe(res => {
       this.stations = res;
     })
+  }
+
+  gotoGenres() {
+    this.router.navigate(['/genres'])
   }
 
 }

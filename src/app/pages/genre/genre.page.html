@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>genre</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="gotoGenres()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{genre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,17 +13,13 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1>{{genre}}</h1>
-      </ion-col>
-    </ion-row>
-
-    <ion-row *ngFor="let station of stations">
-      <ion-col size="auto">
-        <img class="logo-img" [src]="station.favicon" alt="">
-      </ion-col>
-      <ion-col>
-        <h1>{{station.name}}</h1>
-        <img class="flag-img" [src]="'http://purecatamphetamine.github.io/country-flag-icons/3x2/' + station.countrycode + '.svg'" alt="">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="auto" *ngFor="let station of stations">
+              <app-station [station]="station"/>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -18,7 +18,7 @@ export class CountryPage implements OnInit {
     ['AL', 'Albania'],
     ['DZ', 'Algeria'],
     ['AS', 'American Samoa'],
-    ['AD', 'AndorrA'],
+    ['AD', 'Andorra'],
     ['AO', 'Angola'],
     ['AI', 'Anguilla'],
     ['AQ', 'Antarctica'],

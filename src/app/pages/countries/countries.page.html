@@ -10,12 +10,14 @@
 </ion-header>
 
 <ion-content>
-
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-grid>
           <ion-row class="country-row" *ngFor="let country of countries" (click)="gotoCountry(country.code)">
+            <ion-col size="auto">
+              <img class="flag-img" [src]="'/assets/flags/' + country.code.toLowerCase() + '.svg'" alt="">
+            </ion-col>
             <ion-col>
               <p>{{country.name}}</p>
               </ion-col>
