@@ -1,29 +1,4 @@
-.scrolling-wrapper-flexbox {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-
-  .card {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px;
-
-    img {
-      height: 100px;
-      width: 100px;
-    }
-
-    p {
-      font-size: 0.8rem;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-  }
-}
-
-.swiper-slide {
+.swiper-slide, .swiper-slide-container {
   width: 100px !important;
 }
 
