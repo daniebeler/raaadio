@@ -3,26 +3,44 @@ package com.daniebeler.raaadio
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.daniebeler.raaadio.data.common.Destinations
+import com.daniebeler.raaadio.ui.composables.HomeComposable
 import com.daniebeler.raaadio.ui.theme.RaaadioTheme
+import com.daniebeler.raaadio.utils.Navigate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RaaadioTheme {
+                val navController: NavHostController = rememberNavController()
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+                Scaffold(bottomBar = {
+                    BottomBar(navController = navController)
+                }) { paddingValues ->
+                    Box(
+                        modifier = Modifier.padding(paddingValues)
+                    ) {
+                        NavigationGraph(
+                            navController = navController
+                        )
+                    }
                 }
             }
         }
@@ -30,17 +48,34 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun NavigationGraph(navController: NavHostController) {
+    NavHost(navController,
+        startDestination = Destinations.HomeScreen.route,
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None }) {
+        composable(Destinations.HomeScreen.route) {
+            HomeComposable(navController)
+        }
+    }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    RaaadioTheme {
-        Greeting("Android")
+fun BottomBar(navController: NavHostController) {
+    val screens = listOf(
+        Destinations.HomeScreen
+    )
+
+    NavigationBar() {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
+        screens.forEach { screen ->
+
+            NavigationBarItem(icon = {
+                Icon(imageVector = screen.icon!!, contentDescription = "")
+            }, selected = currentRoute == screen.route, onClick = {
+                Navigate.navigateWithPopUp(screen.route, navController)
+            })
+        }
     }
 }
