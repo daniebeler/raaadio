@@ -5,6 +5,7 @@ import com.daniebeler.raaadio.data.repository.StationRepositoryImpl
 import com.daniebeler.raaadio.domain.repository.StationRepository
 import com.daniebeler.raaadio.domain.usecase.GetStationByIdUseCase
 import com.daniebeler.raaadio.domain.usecase.GetStationsByLikesUseCase
+import com.daniebeler.raaadio.domain.usecase.GetStationsByTagUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,4 +52,9 @@ class Module {
     @Singleton
     fun provideGetStationUseCase(repository: StationRepository): GetStationByIdUseCase =
         GetStationByIdUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetStationsByTagUseCase(repository: StationRepository): GetStationsByTagUseCase =
+        GetStationsByTagUseCase(repository)
 }

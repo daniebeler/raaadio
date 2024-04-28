@@ -3,10 +3,17 @@ package com.daniebeler.raaadio.ui.composables.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -19,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
 import com.daniebeler.raaadio.R
 import com.daniebeler.raaadio.utils.Navigate
 
@@ -37,15 +45,28 @@ fun HomeComposable(navController: NavHostController, viewModel: HomeViewModel = 
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            LazyColumn(modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                content = {
+
+            Column {
+                Text(text = "Most Liked")
+
+                LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
                     items(viewModel.stationsState.stations) {
-                        Text(text = it.name ?: "", modifier = Modifier.clickable {
-                            Navigate.navigate("station_screen/${it.uuid}", navController)
-                        })
+                        Column (
+                            modifier = Modifier
+                                .width(150.dp)
+                                .padding(horizontal = 2.dp)
+                        ) {
+                            AsyncImage(model = it.favicon, contentDescription = "", modifier = Modifier.fillMaxWidth().aspectRatio(1f))
+                            Text(text = it.name ?: "", modifier = Modifier.clickable {
+                                Navigate.navigate("station_screen/${it.uuid}", navController)
+                            })
+                        }
+
                     }
-                })
+                }
+            }
+
+
         }
     }
 }

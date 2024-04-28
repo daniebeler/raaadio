@@ -15,4 +15,9 @@ sealed class Destinations(
         route = "station_screen/{uuid}", icon = Icons.Outlined.Home
     )
 
+    object TagScreen : Destinations(
+        route = "tag_screen/{tag}", icon = Icons.Outlined.Home
+    )
+
+
 }

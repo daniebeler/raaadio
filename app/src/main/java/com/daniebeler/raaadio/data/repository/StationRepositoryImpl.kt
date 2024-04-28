@@ -19,6 +19,12 @@ class StationRepositoryImpl @Inject constructor(
         )
     }
 
+    override fun getStationsByTag(tag: String): Flow<Resource<List<Station>>> {
+        return NetworkCall<Station, StationDto>().makeCallList(
+            api.getStationsByTag(tag)
+        )
+    }
+
     override fun getStation(uuid: String): Flow<Resource<List<Station>>> {
         return NetworkCall<Station, StationDto>().makeCallList(
             api.getStation(uuid)

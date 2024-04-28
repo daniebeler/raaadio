@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.daniebeler.raaadio.data.common.Destinations
 import com.daniebeler.raaadio.ui.composables.home.HomeComposable
 import com.daniebeler.raaadio.ui.composables.station.StationComposable
+import com.daniebeler.raaadio.ui.composables.tag.TagComposable
 import com.daniebeler.raaadio.ui.theme.RaaadioTheme
 import com.daniebeler.raaadio.utils.Navigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +65,13 @@ fun NavigationGraph(navController: NavHostController) {
             val uId = navBackStackEntry.arguments?.getString("uuid")
             uId?.let { id ->
                 StationComposable(navController, uuid = id)
+            }
+        }
+
+        composable(Destinations.TagScreen.route) { navBackStackEntry ->
+            val res = navBackStackEntry.arguments?.getString("tag")
+            res?.let { tag ->
+                TagComposable(navController, tag = tag)
             }
         }
     }

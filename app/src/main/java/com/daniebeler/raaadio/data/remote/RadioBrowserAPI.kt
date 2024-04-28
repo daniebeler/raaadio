@@ -10,6 +10,9 @@ interface RadioBrowserAPI {
     @GET("json/stations/topvote?limit=40")
     fun getStationsByLikes(): Call<List<StationDto>>
 
+    @GET("json/stations/bytagexact/{tag}?limit=40&order=votes")
+    fun getStationsByTag(@Path("tag") tag: String): Call<List<StationDto>>
+
     @GET("json/stations/byuuid/{id}?limit=1")
     fun getStation(@Path("id") id: String): Call<List<StationDto>>
 }

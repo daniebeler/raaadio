@@ -7,5 +7,6 @@ data class Station (
     val url: String?,
     val homepage: String?,
     val favicon: String?,
-    val country: String?
+    val country: String?,
+    val tags: List<String>
 )

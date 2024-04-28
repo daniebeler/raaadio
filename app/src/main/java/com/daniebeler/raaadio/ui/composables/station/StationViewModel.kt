@@ -1,8 +1,20 @@
 package com.daniebeler.raaadio.ui.composables.station
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.daniebeler.raaadio.data.common.Resource
@@ -30,7 +42,6 @@ class StationViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    println("foof" + result.message)
                     StationState(error = result.message ?: "An unexpected error occurred")
                 }
 
@@ -43,3 +54,4 @@ class StationViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 }
+
