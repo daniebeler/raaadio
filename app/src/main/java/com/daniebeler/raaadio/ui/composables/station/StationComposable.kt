@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -106,7 +107,8 @@ fun StationComposable(
                         }
                     }
 
-                    Text(text = viewModel.stationState.station!!.country ?: "")
+                    Text(text = viewModel.stationState.station!!.country, textAlign = TextAlign.Center)
+                    Text(text = viewModel.stationState.station!!.state, fontSize = 12.sp, textAlign = TextAlign.Center)
                 }
             }
         }

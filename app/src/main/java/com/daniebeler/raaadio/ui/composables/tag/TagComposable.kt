@@ -1,13 +1,13 @@
 package com.daniebeler.raaadio.ui.composables.tag
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.daniebeler.raaadio.ui.composables.home.Favicon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +44,7 @@ fun TagComposable(
 
     Scaffold(contentWindowInsets = WindowInsets(0.dp), topBar = {
         TopAppBar(windowInsets = WindowInsets(0, 0, 0, 0), title = {
-            Text(text = "tag", fontWeight = FontWeight.Bold)
+            Text(text = "Tag: $tag", fontWeight = FontWeight.Bold)
         })
     }) { paddingValues ->
         Box(
@@ -54,14 +55,9 @@ fun TagComposable(
             LazyColumn (Modifier.padding(horizontal = 12.dp)) {
                 items(viewModel.stationsState.stations) {
                     Row {
-                        AsyncImage(
-                            model = it.favicon,
-                            contentDescription = "",
-                            modifier = Modifier
-                                .width(100.dp)
-                                .height(100.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                        )
+                        Box(modifier = Modifier.size(100.dp)) {
+                            Favicon(link = it.favicon)
+                        }
                         
                         Spacer(modifier = Modifier.width(12.dp))
 

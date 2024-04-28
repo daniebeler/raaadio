@@ -49,6 +49,8 @@ data class StationDto(
             homepage = homepage,
             favicon = favicon,
             country = country,
+            state = state,
+            language = language,
             tags = tags.split(",")
         )
     }
