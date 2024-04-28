@@ -43,7 +43,12 @@ data class StationDto(
 ) : DtoInterface<Station> {
     override fun toModel(): Station {
         return Station(
-            name = name
+            name = name,
+            uuid = stationuuid,
+            url = url,
+            homepage = homepage,
+            favicon = favicon,
+            country = country
         )
     }
 }

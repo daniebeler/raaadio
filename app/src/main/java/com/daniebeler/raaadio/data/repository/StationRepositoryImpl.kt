@@ -18,4 +18,10 @@ class StationRepositoryImpl @Inject constructor(
             api.getStationsByLikes()
         )
     }
+
+    override fun getStation(uuid: String): Flow<Resource<List<Station>>> {
+        return NetworkCall<Station, StationDto>().makeCallList(
+            api.getStation(uuid)
+        )
+    }
 }

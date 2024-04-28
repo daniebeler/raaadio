@@ -1,5 +1,6 @@
 package com.daniebeler.raaadio.ui.composables.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.daniebeler.raaadio.R
+import com.daniebeler.raaadio.utils.Navigate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +41,9 @@ fun HomeComposable(navController: NavHostController, viewModel: HomeViewModel = 
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 content = {
                     items(viewModel.stationsState.stations) {
-                        Text(text = it.name)
+                        Text(text = it.name ?: "", modifier = Modifier.clickable {
+                            Navigate.navigate("station_screen/${it.uuid}", navController)
+                        })
                     }
                 })
         }

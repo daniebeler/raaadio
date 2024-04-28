@@ -3,6 +3,7 @@ package com.daniebeler.raaadio.di
 import com.daniebeler.raaadio.data.remote.RadioBrowserAPI
 import com.daniebeler.raaadio.data.repository.StationRepositoryImpl
 import com.daniebeler.raaadio.domain.repository.StationRepository
+import com.daniebeler.raaadio.domain.usecase.GetStationByIdUseCase
 import com.daniebeler.raaadio.domain.usecase.GetStationsByLikesUseCase
 import dagger.Module
 import dagger.Provides
@@ -20,8 +21,7 @@ class Module {
     @Provides
     @Singleton
     fun provideOKHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .build()
+        return OkHttpClient.Builder().build()
     }
 
 
@@ -44,6 +44,11 @@ class Module {
 
     @Provides
     @Singleton
-    fun provideGetCollectionsUseCase(repository: StationRepository): GetStationsByLikesUseCase =
+    fun provideGetStationsByLikesUseCase(repository: StationRepository): GetStationsByLikesUseCase =
         GetStationsByLikesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetStationUseCase(repository: StationRepository): GetStationByIdUseCase =
+        GetStationByIdUseCase(repository)
 }

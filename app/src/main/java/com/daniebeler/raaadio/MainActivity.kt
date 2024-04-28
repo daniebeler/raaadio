@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.daniebeler.raaadio.data.common.Destinations
 import com.daniebeler.raaadio.ui.composables.home.HomeComposable
+import com.daniebeler.raaadio.ui.composables.station.StationComposable
 import com.daniebeler.raaadio.ui.theme.RaaadioTheme
 import com.daniebeler.raaadio.utils.Navigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,6 +58,13 @@ fun NavigationGraph(navController: NavHostController) {
         exitTransition = { ExitTransition.None }) {
         composable(Destinations.HomeScreen.route) {
             HomeComposable(navController)
+        }
+
+        composable(Destinations.StationScreen.route) { navBackStackEntry ->
+            val uId = navBackStackEntry.arguments?.getString("uuid")
+            uId?.let { id ->
+                StationComposable(navController, uuid = id)
+            }
         }
     }
 }
