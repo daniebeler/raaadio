@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.hilt)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -62,7 +64,12 @@ dependencies {
 
     implementation(libs.gson)
     implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
     implementation(libs.navigation.compose)
+
+    implementation(libs.hilt.naviation)
+    implementation(libs.dagger.hilt)
+    kapt(libs.dagger.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
