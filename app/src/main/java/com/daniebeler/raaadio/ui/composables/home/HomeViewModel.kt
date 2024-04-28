@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getStationsByLikesUseCase: GetStationsByLikesUseCase
-): ViewModel() {
+) : ViewModel() {
 
     var stationsState by mutableStateOf(StationsState())
         private set
@@ -24,11 +24,11 @@ class HomeViewModel @Inject constructor(
         getStations()
     }
 
-    fun getStations() {
+    private fun getStations() {
         getStationsByLikesUseCase().onEach { result ->
             stationsState = when (result) {
                 is Resource.Success -> {
-                    StationsState(trendingPosts = result.data ?: emptyList())
+                    StationsState(stations = result.data ?: emptyList())
                 }
 
                 is Resource.Error -> {
@@ -37,8 +37,7 @@ class HomeViewModel @Inject constructor(
 
                 is Resource.Loading -> {
                     StationsState(
-                        isLoading = true,
-                        trendingPosts = emptyList()
+                        isLoading = true, stations = emptyList()
                     )
                 }
             }

@@ -4,6 +4,6 @@ import com.daniebeler.raaadio.domain.model.Station
 
 data class StationsState(
     val isLoading: Boolean = false,
-    val trendingPosts: List<Station> = emptyList(),
+    val stations: List<Station> = emptyList(),
     val error: String = ""
 )
