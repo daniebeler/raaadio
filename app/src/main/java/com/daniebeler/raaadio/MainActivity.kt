@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.daniebeler.raaadio.data.common.Destinations
+import com.daniebeler.raaadio.ui.composables.countries.CountriesComposable
 import com.daniebeler.raaadio.ui.composables.genre.GenreComposable
 import com.daniebeler.raaadio.ui.composables.genres.GenresComposable
 import com.daniebeler.raaadio.ui.composables.home.HomeComposable
@@ -62,6 +63,10 @@ fun NavigationGraph(navController: NavHostController) {
 
         composable(Destinations.HomeScreen.route) {
             HomeComposable(navController)
+        }
+
+        composable(Destinations.CountriesScreen.route) {
+            CountriesComposable(navController)
         }
 
         composable(Destinations.GenresScreen.route) {

@@ -7,23 +7,27 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class Destinations(
     val route: String, val icon: ImageVector? = null
 ) {
-    object HomeScreen : Destinations(
+    data object HomeScreen : Destinations(
         route = "home_screen", icon = Icons.Outlined.Home
     )
 
-    object GenresScreen : Destinations(
+    data object CountriesScreen : Destinations(
+        route = "countries_screen", icon = Icons.Outlined.Home
+    )
+
+    data object GenresScreen : Destinations(
         route = "genres_screen", icon = Icons.Outlined.Home
     )
 
-    object GenreScreen : Destinations(
+    data object GenreScreen : Destinations(
         route = "genre_screen/{genre}", icon = Icons.Outlined.Home
     )
 
-    object StationScreen : Destinations(
+    data object StationScreen : Destinations(
         route = "station_screen/{uuid}", icon = Icons.Outlined.Home
     )
 
-    object TagScreen : Destinations(
+    data object TagScreen : Destinations(
         route = "tag_screen/{tag}", icon = Icons.Outlined.Home
     )
 

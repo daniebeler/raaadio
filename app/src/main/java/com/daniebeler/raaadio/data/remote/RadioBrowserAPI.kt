@@ -1,5 +1,6 @@
 package com.daniebeler.raaadio.data.remote
 
+import com.daniebeler.raaadio.data.remote.dto.CountryDto
 import com.daniebeler.raaadio.data.remote.dto.StationDto
 import retrofit2.Call
 import retrofit2.http.GET
@@ -15,4 +16,7 @@ interface RadioBrowserAPI {
 
     @GET("json/stations/byuuid/{id}?limit=1")
     fun getStation(@Path("id") id: String): Call<List<StationDto>>
+
+    @GET("json/countries?limit=40&order=name")
+    fun getCountries(): Call<List<CountryDto>>
 }
