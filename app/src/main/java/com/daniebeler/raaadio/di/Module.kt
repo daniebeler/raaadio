@@ -7,6 +7,7 @@ import com.daniebeler.raaadio.domain.repository.CountryRepository
 import com.daniebeler.raaadio.domain.repository.StationRepository
 import com.daniebeler.raaadio.domain.usecase.GetCountriesUseCase
 import com.daniebeler.raaadio.domain.usecase.GetStationByIdUseCase
+import com.daniebeler.raaadio.domain.usecase.GetStationsByCountrycodeUseCase
 import com.daniebeler.raaadio.domain.usecase.GetStationsByLikesUseCase
 import com.daniebeler.raaadio.domain.usecase.GetStationsByTagUseCase
 import dagger.Module
@@ -66,6 +67,11 @@ class Module {
     @Singleton
     fun provideGetStationsByTagUseCase(repository: StationRepository): GetStationsByTagUseCase =
         GetStationsByTagUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetStationsByCountrycodeUseCase(repository: StationRepository): GetStationsByCountrycodeUseCase =
+        GetStationsByCountrycodeUseCase(repository)
 
     @Provides
     @Singleton

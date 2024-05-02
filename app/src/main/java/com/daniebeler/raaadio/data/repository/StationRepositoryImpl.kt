@@ -25,6 +25,12 @@ class StationRepositoryImpl @Inject constructor(
         )
     }
 
+    override fun getStationsByCountrycode(code: String): Flow<Resource<List<Station>>> {
+        return NetworkCall<Station, StationDto>().makeCallList(
+            api.getStationsByCountrycode(code)
+        )
+    }
+
     override fun getStation(uuid: String): Flow<Resource<List<Station>>> {
         return NetworkCall<Station, StationDto>().makeCallList(
             api.getStation(uuid)

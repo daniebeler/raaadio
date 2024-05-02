@@ -3,14 +3,13 @@ package com.daniebeler.raaadio.ui.composables.countries
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,12 +21,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -42,7 +42,7 @@ fun CountriesComposable(
 
     Scaffold(contentWindowInsets = WindowInsets(0.dp), topBar = {
         TopAppBar(windowInsets = WindowInsets(0, 0, 0, 0), title = {
-            Text(stringResource(id = R.string.app_name), fontWeight = FontWeight.Bold)
+            Text("Countries", fontWeight = FontWeight.Bold)
         })
     }) { paddingValues ->
         Box(
@@ -51,18 +51,31 @@ fun CountriesComposable(
                 .padding(paddingValues)
         ) {
 
-            LazyColumn(contentPadding = PaddingValues(vertical = 6.dp)) {
+            LazyColumn(modifier = Modifier.padding(horizontal = 12.dp)) {
                 items(viewModel.countriesState.countries) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 6.dp)
+                            .padding(vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = it.name)
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.globe),
+                            contentDescription = null,
+                            Modifier
+                                .width(94.dp)
+                                .aspectRatio(1f)
+                                .clip(RoundedCornerShape(10.dp))
+                        )
 
-                        Text(text = it.stationcount.toString() + " stations")
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Column {
+                            Text(text = it.name, fontWeight = FontWeight.Bold)
+
+                            Text(text = it.stationcount.toString() + " stations", fontSize = 12.sp)
+                        }
                     }
 
                 }
@@ -75,7 +88,7 @@ fun CountriesComposable(
 fun Favicon(link: String) {
     if (link.isBlank()) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.stationfallback),
             contentDescription = null,
             Modifier
                 .fillMaxWidth()
@@ -88,7 +101,7 @@ fun Favicon(link: String) {
                 .fillMaxWidth()
                 .aspectRatio(1f)
                 .clip(RoundedCornerShape(10.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
             AsyncImage(
                 model = link,

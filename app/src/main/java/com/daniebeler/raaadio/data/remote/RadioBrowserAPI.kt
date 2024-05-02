@@ -14,9 +14,12 @@ interface RadioBrowserAPI {
     @GET("json/stations/bytagexact/{tag}?limit=40&order=votes")
     fun getStationsByTag(@Path("tag") tag: String): Call<List<StationDto>>
 
+    @GET("json/stations/bycountrycodeexact/{code}?limit=40&order=votes&reverse=true")
+    fun getStationsByCountrycode(@Path("code") tag: String): Call<List<StationDto>>
+
     @GET("json/stations/byuuid/{id}?limit=1")
     fun getStation(@Path("id") id: String): Call<List<StationDto>>
 
-    @GET("json/countries?limit=40&order=name")
+    @GET("json/countries?order=name")
     fun getCountries(): Call<List<CountryDto>>
 }
