@@ -10,5 +10,6 @@ data class Station (
     val country: String,
     val state: String,
     val language: String,
-    val tags: List<String>
+    val tags: List<String>,
+    val votes: Int
 )

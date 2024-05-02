@@ -51,7 +51,8 @@ data class StationDto(
             country = country,
             state = state,
             language = language,
-            tags = tags.split(",")
+            tags = tags.split(","),
+            votes = votes
         )
     }
 }

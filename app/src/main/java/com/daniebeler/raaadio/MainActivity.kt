@@ -15,11 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.daniebeler.raaadio.data.common.Destinations
+import com.daniebeler.raaadio.ui.composables.genre.GenreComposable
+import com.daniebeler.raaadio.ui.composables.genres.GenresComposable
 import com.daniebeler.raaadio.ui.composables.home.HomeComposable
 import com.daniebeler.raaadio.ui.composables.station.StationComposable
 import com.daniebeler.raaadio.ui.composables.tag.TagComposable
@@ -57,8 +59,20 @@ fun NavigationGraph(navController: NavHostController) {
         startDestination = Destinations.HomeScreen.route,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None }) {
+
         composable(Destinations.HomeScreen.route) {
             HomeComposable(navController)
+        }
+
+        composable(Destinations.GenresScreen.route) {
+            GenresComposable(navController)
+        }
+
+        composable(Destinations.GenreScreen.route) { navBackStackEntry ->
+            val genre = navBackStackEntry.arguments?.getString("genre")
+            genre?.let {
+                GenreComposable(navController, genre = it)
+            }
         }
 
         composable(Destinations.StationScreen.route) { navBackStackEntry ->

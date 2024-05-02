@@ -1,33 +1,32 @@
-package com.daniebeler.raaadio.ui.composables.home
+package com.daniebeler.raaadio.ui.composables.genres
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -36,12 +35,15 @@ import com.daniebeler.raaadio.utils.Navigate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeComposable(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
+fun GenresComposable(
+    navController: NavHostController, viewModel: GenresViewModel = hiltViewModel()
+) {
 
+    val lazyGridState = rememberLazyGridState()
 
     Scaffold(contentWindowInsets = WindowInsets(0.dp), topBar = {
         TopAppBar(windowInsets = WindowInsets(0, 0, 0, 0), title = {
-            Text(stringResource(id = R.string.app_name), fontWeight = FontWeight.Bold)
+            Text("Genres", fontWeight = FontWeight.Bold)
         })
     }) { paddingValues ->
         Box(
@@ -50,42 +52,30 @@ fun HomeComposable(navController: NavHostController, viewModel: HomeViewModel = 
                 .padding(paddingValues)
         ) {
 
-            Column (Modifier.fillMaxWidth()) {
-                Text(text = "Most Liked")
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                state = lazyGridState
+            ) {
+                items(viewModel.genres) {
+                    Box(modifier = Modifier.clickable {
+                        Navigate.navigate("genre_screen/" + it.genreId, navController)
+                    }, contentAlignment = Alignment.Center) {
+                        Image(
+                            painter = painterResource(id = it.image),
+                            contentDescription = null,
+                            Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(1.5f)
+                                .clip(RoundedCornerShape(12.dp)),
+                            contentScale = ContentScale.Crop
+                        )
 
-                LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
-                    items(viewModel.stationsState.stations) {
-                        Column(
-                            modifier = Modifier
-                                .width(150.dp)
-                                .padding(horizontal = 2.dp)
-                        ) {
-                            Favicon(link = it.favicon)
-
-                            Text(text = it.name ?: "", modifier = Modifier.clickable {
-                                Navigate.navigate("station_screen/${it.uuid}", navController)
-                            })
-                        }
-
+                        Text(text = it.name, fontWeight = FontWeight.Bold, fontSize = 24.sp)
                     }
                 }
-
-                Spacer(modifier = Modifier.height(46.dp))
-
-                Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp).clickable {
-                    Navigate.navigate("genres_screen", navController)
-                }) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_launcher_background),
-                        contentDescription = null,
-                        Modifier
-                            .fillMaxWidth()
-                            .height(84.dp)
-                            .clip(CircleShape)
-                    )
-                }
             }
-
 
         }
     }
